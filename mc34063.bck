@@ -818,6 +818,11 @@ D 4 x 4 Register Files 3 State Out
 K TTL Register 3State
 $ENDCMP
 #
+$CMP MC34063
+D Quad nand2
+K TTL nand2
+$ENDCMP
+#
 $CMP SN74LVC1G332
 D 3-input OR Gate
 K 3 input OR
