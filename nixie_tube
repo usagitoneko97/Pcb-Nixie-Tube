@@ -1,0 +1,23 @@
+Source,/home/usagitoneko/Documents/kicad-project/nixie-tube/nixie_tube.sch
+Kicad Rev,Eeschema 4.0.5+dfsg1-4
+Generated Date,Sun 08 Oct 2017 01:13:04 PM +08
+
+Title,Not Set
+Company,Not Set
+Revision,Not Set
+Date Issue,Not Set
+
+Reference,Value,voltage,Library,Library Ref
+C2,220uF,25V,device,CP
+L1,220uH,device,L
+D2,BAV21,device,D
+R2,475K,device,R
+R3,3K32,device,R
+C3,0.01uF,device,CP
+D1,1N914,device,D
+Q1,MPSA92,transistors,MPSA92
+R1,1k0,device,R
+C1,CP,device,CP
+Q2,IRF740,transistors,IRLB8721PBF
+C4,2.2uF,250V,device,CP
+U1,MC34063,nixie_tube-rescue,MC34063-RESCUE-nixie_tube

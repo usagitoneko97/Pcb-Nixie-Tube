@@ -1,4 +1,4 @@
-update=Sabtu 07 Okt 2017 11:33:53  MYT
+update=Sun 08 Oct 2017 03:25:11 PM +08
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,4 @@ LibName28=atmel
 LibName29=contrib
 LibName30=valves
 LibName31=mc34063
+LibName32=dc-jack

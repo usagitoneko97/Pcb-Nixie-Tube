@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>/home/usagitoneko/Documents/kicad-project/nixie-tube/nixie_tube.sch</source>
+    <date>Sun 08 Oct 2017 01:27:34 PM +08</date>
+    <tool>Eeschema 4.0.5+dfsg1-4</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>nixie_tube.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C2">
+      <value>220uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <fields>
+        <field name="voltage">25V</field>
+      </fields>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D51158</tstamp>
+    </comp>
+    <comp ref="L1">
+      <value>220uH</value>
+      <footprint>Inductors:Inductor_1212</footprint>
+      <libsource lib="device" part="L"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D511C0</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>BAV21</value>
+      <footprint>Diodes_SMD:DO-214AB_Handsoldering</footprint>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D51213</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>475K</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D5132C</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>3K32</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D51391</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>0.01uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D5148C</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>1N914</value>
+      <footprint>Diodes_SMD:DO-214AB_Handsoldering</footprint>
+      <libsource lib="device" part="D"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D51576</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>MPSA92</value>
+      <footprint>TO_SOT_Packages_SMD:TO-252-2Lead</footprint>
+      <libsource lib="transistors" part="MPSA92"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D515D9</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>1k0</value>
+      <footprint>Resistors_SMD:R_0603_HandSoldering</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D5177B</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>CP</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D5182B</tstamp>
+    </comp>
+    <comp ref="Q2">
+      <value>IRF740</value>
+      <footprint>TO_SOT_Packages_THT:TO-220_Neutral123_Vertical</footprint>
+      <libsource lib="transistors" part="IRLB8721PBF"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D51B8E</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>2.2uF</value>
+      <footprint>Capacitors_SMD:C_0603_HandSoldering</footprint>
+      <fields>
+        <field name="voltage">250V</field>
+      </fields>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D52471</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>MC34063</value>
+      <footprint>Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm</footprint>
+      <libsource lib="nixie_tube-rescue" part="MC34063-RESCUE-nixie_tube"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>59D6698A</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="device" part="CP">
+      <description>Polarised capacitor</description>
+      <footprints>
+        <fp>CP*</fp>
+        <fp>C_Axial*</fp>
+        <fp>C_Radial*</fp>
+        <fp>TantalC*</fp>
+        <fp>C*elec</fp>
+        <fp>c_elec*</fp>
+        <fp>SMD*_Pol</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="D">
+      <description>Diode</description>
+      <footprints>
+        <fp>Diode_*</fp>
+        <fp>D-*</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="transistors" part="IRLB8721PBF">
+      <description>30V Vds, 62A Id, N-Channel MOSFET, TO-220</description>
+      <docs>http://www.infineon.com/dgdl/irlb8721pbf.pdf?fileId=5546d462533600a40153566056732591</docs>
+      <footprints>
+        <fp>TO-220*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">IRLB8721PBF</field>
+        <field name="Footprint">TO_SOT_Packages_THT:TO-220_Neutral123_Vertical</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="D" type="passive"/>
+        <pin num="3" name="S" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="L">
+      <description>Inductor</description>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="nixie_tube-rescue" part="MC34063-RESCUE-nixie_tube">
+      <footprints>
+        <fp>14DIP300*</fp>
+        <fp>SO14*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MC34063-RESCUE-nixie_tube</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="input"/>
+        <pin num="2" name="~" type="input"/>
+        <pin num="3" name="CT" type="input"/>
+        <pin num="4" name="COM" type="input"/>
+        <pin num="5" name="~" type="input"/>
+        <pin num="6" name="~" type="output"/>
+        <pin num="7" name="Isc" type="input"/>
+        <pin num="8" name="~" type="output"/>
+        <pin num="9" name="~" type="input"/>
+        <pin num="10" name="~" type="input"/>
+        <pin num="11" name="~" type="output"/>
+        <pin num="12" name="~" type="input"/>
+        <pin num="13" name="~" type="input"/>
+        <pin num="??" name="C0" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="transistors" part="MPSA92">
+      <description>Vce 300V, Ic 500mA, PNP High Voltage Transistor, TO-92</description>
+      <docs>http://www.onsemi.com/pub_link/Collateral/MPSA92-D.PDF</docs>
+      <footprints>
+        <fp>TO-92*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">MPSA92</field>
+        <field name="Footprint">TO-92</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E" type="passive"/>
+        <pin num="2" name="B" type="input"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>Resistor_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="nixie_tube-rescue">
+      <uri>/home/usagitoneko/Documents/kicad-project/nixie-tube/nixie_tube-rescue.lib</uri>
+    </library>
+    <library logical="transistors">
+      <uri>/usr/share/kicad/library/transistors.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>/usr/share/kicad/library/device.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GND">
+      <node ref="C2" pin="2"/>
+      <node ref="R3" pin="2"/>
+      <node ref="U1" pin="4"/>
+      <node ref="C3" pin="2"/>
+      <node ref="Q1" pin="3"/>
+      <node ref="R1" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C1" pin="2"/>
+      <node ref="Q2" pin="3"/>
+    </net>
+    <net code="2" name="Net-(D2-Pad2)">
+      <node ref="D2" pin="2"/>
+      <node ref="Q2" pin="2"/>
+      <node ref="L1" pin="2"/>
+    </net>
+    <net code="3" name="Net-(C1-Pad1)">
+      <node ref="C1" pin="1"/>
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="4" name="Net-(C3-Pad1)">
+      <node ref="R2" pin="2"/>
+      <node ref="U1" pin="5"/>
+      <node ref="C3" pin="1"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="5" name="Net-(D1-Pad1)">
+      <node ref="Q1" pin="1"/>
+      <node ref="D1" pin="1"/>
+      <node ref="Q2" pin="1"/>
+    </net>
+    <net code="6" name="Net-(C4-Pad1)">
+      <node ref="D2" pin="1"/>
+      <node ref="R2" pin="1"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="9" name="Net-(D1-Pad2)">
+      <node ref="U1" pin="2"/>
+      <node ref="D1" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="10" name="+12C">
+      <node ref="U1" pin="1"/>
+      <node ref="U1" pin="6"/>
+      <node ref="C2" pin="1"/>
+      <node ref="U1" pin="7"/>
+      <node ref="U1" pin="8"/>
+      <node ref="L1" pin="1"/>
+    </net>
+  </nets>
+</export>
