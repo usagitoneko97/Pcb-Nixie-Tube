@@ -3,10 +3,10 @@
   (general
     (links 50)
     (no_connects 37)
-    (area 166.424999 83.424999 194.575001 127.575001)
+    (area 166.424999 83.424999 193.075001 127.575001)
     (thickness 1.6)
     (drawings 7)
-    (tracks 44)
+    (tracks 40)
     (zones 0)
     (modules 22)
     (nets 15)
@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 5)
+    (last_trace_width 0.25)
     (user_trace_width 5)
     (trace_clearance 0.2)
     (zone_clearance 0.508)
@@ -150,7 +150,7 @@
   )
 
   (module nixie-tube-fp:dc005a (layer F.Cu) (tedit 59DDABEC) (tstamp 59E5D3D3)
-    (at 187.25 125.55 90)
+    (at 186.5 125.55 90)
     (path /59DD8DA0)
     (fp_text reference J11 (at 6 6.89 90) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
@@ -429,7 +429,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Angled_1x05_Pitch2.54mm (layer B.Cu) (tedit 59650532) (tstamp 59E5D3B7)
-    (at 178 115.16 180)
+    (at 177.7 115.16 180)
     (descr "Through hole angled pin header, 1x05, 2.54mm pitch, 6mm pin length, single row")
     (tags "Through hole angled pin header THT 1x05 2.54mm single row")
     (path /59E5DABD)
@@ -669,7 +669,7 @@
   )
 
   (module Pin_Headers:Pin_Header_Angled_1x01_Pitch2.54mm (layer B.Cu) (tedit 59650532) (tstamp 59E5D3C5)
-    (at 178 86.5 180)
+    (at 177.7 86.5 180)
     (descr "Through hole angled pin header, 1x01, 2.54mm pitch, 6mm pin length, single row")
     (tags "Through hole angled pin header THT 1x01 2.54mm single row")
     (path /59E5D935)
@@ -1334,13 +1334,13 @@
     )
   )
 
+  (gr_line (start 191.51 127.5) (end 193 127.5) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 191.5 83.5) (end 193 83.5) (layer Edge.Cuts) (width 0.15))
   (gr_text 28x44mm (at 181.1 129.8) (layer Eco1.User)
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
-  (gr_line (start 191.5 83.5) (end 194.5 83.5) (layer Edge.Cuts) (width 0.15))
-  (gr_line (start 191.5 127.5) (end 194.5 127.5) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 191.5 83.5) (end 166.5 83.5) (layer Edge.Cuts) (width 0.15))
-  (gr_line (start 193 127.55) (end 193 83.55) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 193 127.5) (end 193 83.5) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 166.5 127.5) (end 191.5 127.5) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 166.5 83.5) (end 166.5 127.5) (layer Edge.Cuts) (width 0.15))
 
@@ -1349,10 +1349,6 @@
   (segment (start 180.1 112.052895) (end 180.1 112.077895) (width 0.4) (layer F.Cu) (net 2) (status 30))
   (segment (start 183.2 108.3) (end 183.2 110.3) (width 0.25) (layer F.Cu) (net 3) (status 30))
   (segment (start 183.225 108.3) (end 183.2 108.3) (width 0.25) (layer F.Cu) (net 3) (status 30))
-  (segment (start 179.9 85.4) (end 190.4 85.4) (width 5) (layer F.Cu) (net 4))
-  (segment (start 190.4 85.4) (end 191.5 86.5) (width 5) (layer F.Cu) (net 4) (status 20))
-  (segment (start 178.8 86.5) (end 179.9 85.4) (width 5) (layer F.Cu) (net 4) (status 10))
-  (segment (start 178 86.5) (end 178.8 86.5) (width 5) (layer F.Cu) (net 4) (status 30))
   (segment (start 191.5 86.5) (end 191.5 92.035) (width 0.25) (layer F.Cu) (net 4) (status 10))
   (segment (start 191.5 92.035) (end 189.810001 93.724999) (width 0.25) (layer F.Cu) (net 4))
   (segment (start 186.960001 93.724999) (end 189.810001 93.724999) (width 0.25) (layer F.Cu) (net 4))
