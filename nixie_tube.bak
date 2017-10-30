@@ -231,7 +231,7 @@ U 1 1 59D52471
 P 5950 2950
 F 0 "C4" H 5975 3050 50  0000 L CNN
 F 1 "2.2uF" H 6000 2750 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 5988 2800 50  0001 C CNN
+F 2 "Capacitors_THT:CP_Radial_D8.0mm_P2.50mm" H 5988 2800 50  0001 C CNN
 F 3 "" H 5950 2950 50  0000 C CNN
 F 4 "250V" H 6100 2850 60  0000 C CNN "voltage"
 	1    5950 2950
@@ -338,28 +338,6 @@ F 1 "Conn_01x01_Male" H 6550 2225 50  0000 C CNN
 F 2 "Pin_Headers:Pin_Header_Angled_1x01_Pitch2.54mm" H 6550 2325 50  0001 C CNN
 F 3 "" H 6550 2325 50  0001 C CNN
 	1    6550 2325
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_01x05_Female J2
-U 1 1 59E5DA12
-P 3275 4900
-F 0 "J2" H 3275 5200 50  0000 C CNN
-F 1 "Conn_01x05_Female" H 3275 4600 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Angled_1x05_Pitch2.54mm" H 3275 4900 50  0001 C CNN
-F 3 "" H 3275 4900 50  0001 C CNN
-	1    3275 4900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_01x05_Male J1
-U 1 1 59E5DABD
-P 2000 4900
-F 0 "J1" H 2000 5200 50  0000 C CNN
-F 1 "Conn_01x05_Male" H 2000 4600 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Angled_1x05_Pitch2.54mm" H 2000 4900 50  0001 C CNN
-F 3 "" H 2000 4900 50  0001 C CNN
-	1    2000 4900
 	1    0    0    -1  
 $EndComp
 Text Label 2200 4700 0    60   ~ 0
@@ -597,4 +575,30 @@ F 3 "" H 1825 2300 50  0001 C CNN
 	1    1825 2300
 	0    1    -1   0   
 $EndComp
+$Comp
+L Conn_01x06_Male J?
+U 1 1 59F6FE01
+P 2000 4800
+F 0 "J?" H 2000 5100 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 2000 4400 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Angled_1x06_Pitch2.54mm" H 2000 4800 50  0001 C CNN
+F 3 "" H 2000 4800 50  0001 C CNN
+	1    2000 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x06_Female J?
+U 1 1 59F70E4E
+P 3275 4800
+F 0 "J?" H 3275 5100 50  0000 C CNN
+F 1 "Conn_01x06_Female" H 3275 4400 50  0000 C CNN
+F 2 "Socket_Strips:Socket_Strip_Angled_1x06_Pitch2.54mm" H 3275 4800 50  0001 C CNN
+F 3 "" H 3275 4800 50  0001 C CNN
+	1    3275 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 4600 3075 4600
+Text Label 2200 4600 0    60   ~ 0
+OE
 $EndSCHEMATC
