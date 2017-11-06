@@ -1,11 +1,26 @@
-Output: Simple BOM
-Type  : SimpleBOM
+Output: Gerber Files
+Type  : Gerber
 From  : Variant [[No Variations]] of Project [nixie-tube.PrjPcb]
-   Generated File[nixie-tube-power.BOM]
-   Generated File[nixie-tube-power.CSV]
+   Generated File[nixie-tube-power.GTL]
+   Generated File[nixie-tube-power.GBL]
+   Generated File[nixie-tube-power.GTO]
+   Generated File[nixie-tube-power.GTP]
+   Generated File[nixie-tube-power.GTS]
+   Generated File[nixie-tube-power.GBS]
+   Generated File[nixie-tube-power.GBP]
+   Generated File[nixie-tube-power.GBO]
+   Generated File[nixie-tube-power.GKO]
+   Generated File[nixie-tube-power.GM1]
+   Generated File[nixie-tube-power.GM13]
+   Generated File[nixie-tube-power.GM15]
+   Generated File[nixie-tube-power.GML]
+   Generated File[nixie-tube-power.1]
+   Generated File[nixie-tube-power.RUL]
+   Generated File[nixie-tube-power.EXTREP]
+   Generated File[nixie-tube-power.REP]
 
 
-Files Generated   : 2
+Files Generated   : 17
 Documents Printed : 0
 
-Finished Output Generation At 9:12:18 PM On 11/6/2017
+Finished Output Generation At 10:14:25 PM On 11/6/2017

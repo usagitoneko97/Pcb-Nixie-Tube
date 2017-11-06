@@ -6,7 +6,7 @@
     (area 166.424999 83.424999 189.825001 127.575001)
     (thickness 1.6)
     (drawings 5)
-    (tracks 0)
+    (tracks 7)
     (zones 0)
     (modules 22)
     (nets 15)
@@ -1346,6 +1346,14 @@
   (gr_line (start 189.75 127.5) (end 189.75 83.5) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 166.5 127.5) (end 189.75 127.5) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 166.5 83.5) (end 166.5 127.5) (layer Edge.Cuts) (width 0.15))
+
+  (segment (start 171.7 116.65) (end 169.7 116.65) (width 0.25) (layer F.Cu) (net 3))
+  (segment (start 167.7 116.65) (end 168.4 116.65) (width 0.25) (layer F.Cu) (net 5))
+  (segment (start 168.4 116.65) (end 168.975001 117.225001) (width 0.25) (layer F.Cu) (net 5))
+  (segment (start 168.975001 117.225001) (end 172.490917 117.225001) (width 0.25) (layer F.Cu) (net 5))
+  (segment (start 172.490917 117.225001) (end 173.065918 116.65) (width 0.25) (layer F.Cu) (net 5))
+  (segment (start 174.84995 116.65) (end 175.5 116.65) (width 0.25) (layer F.Cu) (net 5))
+  (segment (start 173.065918 116.65) (end 174.84995 116.65) (width 0.25) (layer F.Cu) (net 5))
 
   (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 0) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
