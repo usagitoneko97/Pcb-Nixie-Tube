@@ -1,0 +1,767 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD17\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/7/2017</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">7:14:52 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc" class="file"><acronym title="C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc">C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">137</td></tr>
+</table>
+</td>
+</table><a name="IDTU1I3OFLX3OHFVKYTJSGU31KEN2XHPAAKIQZS1H2TJKOHU5O03NB"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPDZIZU4GFLXNECTWZJSA5K25HJTJFOVSIBEATYJLMTYPUHZ53MQD">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDALZAEDGRGA0AIGNQDVRVUJ1BIOJ5FXFQLMEGNVPJ11CEZUFL0UDH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXDNSVRBCITOHIT43SKBAJPVZJKZJ2EOOJMF2GQOK31PHZN4H1CME">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIJF23TA0NCHTDB5PVAY0QGJOCDNBMCWZ1LEMZICGE1N55UVQ4CYI">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQRURDQUNVNIHKIKBD3SS5TKEWMVZ5VT2T0P142PR1CQQ4ZLITVAD">Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBTUSRDI1OJBPLCZVQITK5U1PBOMIWMXUOSNMSFCZAD2L3TFNLTNH">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDR3IMTXMH0RK0LTTDPEPAXJG3IM3U4VLZM44H0DGQQXYLFSFMKPTE">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOCVMFXSC55L0CNHNU23D0PRBZCYEGVOFL4B14KCQYVD5ESZQPHIP">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZMRBQJFLIWHKFSCGKTYH5ETIVP0PWW1ILJDBMND40AWDDFKWT3VI">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHYZBU2C5PV50B20IKT3KJP1ISJCVAB3PLFVYQWPK1MHMK4VH25OD">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">60</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFMNZW3QV0HNFEJETAIVGEUVH4C4HLSBYKTCMS1B5XQXPGLVTJCHF">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">35</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEZDX1FG2OC2RHZCJHAMLBRHEUKVISPKWJKCJDZO4FKISXLMPMBX">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCADDY4KN0RPKEWW2B2X4WOK0MBUPC1JOEPZXJVBS1VZKXW20QL">Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power'))</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID15WW5KQRT1P2LSQE2EVBAGYPQBJ3VVV5441B3WDU1R324L3LJB4K">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">137</td>
+</tr>
+</table><br><a name="IDPDZIZU4GFLXNECTWZJSA5K25HJTJFOVSIBEATYJLMTYPUHZ53MQD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.781mil|Location2.X=3564.031mil|Location1.Y=1732.643mil|Location2.Y=1743.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.781mil|Location2.X=3564.031mil|Location1.Y=1732.643mil|Location2.Y=1743.893mil|Absolute=True">Clearance Constraint: (0.173mm &lt; 0.254mm) Between Track (0mm,-44mm)(0mm,0mm) on Top Layer And Pad R1-2(0.75mm,-35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.781mil|Location2.X=3564.031mil|Location1.Y=1673.588mil|Location2.Y=1684.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3552.781mil|Location2.X=3564.031mil|Location1.Y=1673.588mil|Location2.Y=1684.838mil|Absolute=True">Clearance Constraint: (0.173mm &lt; 0.254mm) Between Track (0mm,-44mm)(0mm,0mm) on Top Layer And Pad R1-1(0.75mm,-36.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3611.167mil|Location2.X=3618.833mil|Location1.Y=1704.159mil|Location2.Y=1711.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3611.167mil|Location2.X=3618.833mil|Location1.Y=1704.159mil|Location2.Y=1711.825mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.254mm) Between Track (1.6mm,-36.068mm)(2.032mm,-36.5mm) on Top Layer And Track (1.651mm,-37.084mm)(1.651mm,-35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.875mil|Location2.X=3628.125mil|Location1.Y=1687.367mil|Location2.Y=1698.617mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.875mil|Location2.X=3628.125mil|Location1.Y=1687.367mil|Location2.Y=1698.617mil|Absolute=True">Clearance Constraint: (0.127mm &lt; 0.254mm) Between Track (2.032mm,-36.5mm)(2.5mm,-36.5mm) on Top Layer And Track (1.651mm,-37.084mm)(1.651mm,-35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3610.167mil|Location2.X=3617.833mil|Location1.Y=1706.159mil|Location2.Y=1713.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3610.167mil|Location2.X=3617.833mil|Location1.Y=1706.159mil|Location2.Y=1713.825mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.254mm) Between Track (1.6mm,-36.068mm)(1.6mm,-34.29mm) on Top Layer And Track (1.651mm,-37.084mm)(1.651mm,-35mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3610.167mil|Location2.X=3617.833mil|Location1.Y=1748.215mil|Location2.Y=1755.881mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3610.167mil|Location2.X=3617.833mil|Location1.Y=1748.215mil|Location2.Y=1755.881mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.254mm) Between Track (1.6mm,-36.068mm)(1.6mm,-34.29mm) on Top Layer And Track (1.651mm,-35mm)(2.5mm,-35mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDALZAEDGRGA0AIGNQDVRVUJ1BIOJ5FXFQLMEGNVPJ11CEZUFL0UDH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3602.539mil|Location2.X=3627.461mil|Location1.Y=1692.927mil|Location2.Y=1717.848mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3602.539mil|Location2.X=3627.461mil|Location1.Y=1692.927mil|Location2.Y=1717.848mil|Absolute=True">Short-Circuit Constraint: Between Track (1.6mm,-36.068mm)(2.032mm,-36.5mm) on Top Layer And Track (1.651mm,-37.084mm)(1.651mm,-35mm) on Top Layer Location : [X = 91.821mm][Y = 43.317mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3586.055mil|Location2.X=3641.945mil|Location1.Y=1703.075mil|Location2.Y=1758.965mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3586.055mil|Location2.X=3641.945mil|Location1.Y=1703.075mil|Location2.Y=1758.965mil|Absolute=True">Short-Circuit Constraint: Between Track (1.6mm,-36.068mm)(1.6mm,-34.29mm) on Top Layer And Track (1.651mm,-37.084mm)(1.651mm,-35mm) on Top Layer Location : [X = 91.796mm][Y = 43.968mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3605.959mil|Location2.X=3622.041mil|Location1.Y=1744.007mil|Location2.Y=1760.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3605.959mil|Location2.X=3622.041mil|Location1.Y=1744.007mil|Location2.Y=1760.089mil|Absolute=True">Short-Circuit Constraint: Between Track (1.6mm,-36.068mm)(1.6mm,-34.29mm) on Top Layer And Track (1.651mm,-35mm)(2.5mm,-35mm) on Top Layer Location : [X = 91.796mm][Y = 44.502mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDXDNSVRBCITOHIT43SKBAJPVZJKZJ2EOOJMF2GQOK31PHZN4H1CME"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3557.811mil|Location2.X=4036.284mil|Location1.Y=1549.622mil|Location2.Y=1769.828mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3557.811mil|Location2.X=4036.284mil|Location1.Y=1549.622mil|Location2.Y=1769.828mil|Absolute=True">Un-Routed Net Constraint: Net VCC Between Pad R1-2(0.75mm,-35mm) on Top Layer And Pad P2-2(11.5mm,-39.29mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZMRBQJFLIWHKFSCGKTYH5ETIVP0PWW1ILJDBMND40AWDDFKWT3VI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4148.074mil|Location2.X=4159.324mil|Location1.Y=1755.812mil|Location2.Y=1767.915mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4148.074mil|Location2.X=4159.324mil|Location1.Y=1755.812mil|Location2.Y=1767.915mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.149mm &lt; 0.254mm) Between Via (14.63mm,-34.358mm) from Top Layer to Bottom Layer And Pad J2-2(15.75mm,-35.5mm) on Top Layer [Top Solder] Mask Sliver [0.149mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4105.445mil|Location2.X=4117.977mil|Location1.Y=1801.515mil|Location2.Y=1812.765mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4105.445mil|Location2.X=4117.977mil|Location1.Y=1801.515mil|Location2.Y=1812.765mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.221mm &lt; 0.254mm) Between Via (14.63mm,-34.358mm) from Top Layer to Bottom Layer And Pad Q1-1(13.8mm,-32.675mm) on Top Layer [Top Solder] Mask Sliver [0.221mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3691.483mil|Location2.X=3702.733mil|Location1.Y=1872.35mil|Location2.Y=1886.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3691.483mil|Location2.X=3702.733mil|Location1.Y=1872.35mil|Location2.Y=1886.511mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.215mm &lt; 0.254mm) Between Via (4.547mm,-31.49mm) from Top Layer to Bottom Layer And Pad U1-3(2.3mm,-31.885mm) on Top Layer [Top Solder] Mask Sliver [0.215mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3688.329mil|Location2.X=3699.579mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3688.329mil|Location2.X=3699.579mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad C4-2(3.2mm,-37.75mm) on Top Layer And Pad R4-1(4.208mm,-36.5mm) on Top Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3621.084mil|Location2.X=3632.334mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3621.084mil|Location2.X=3632.334mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad C4-1(1.8mm,-37.75mm) on Top Layer And Pad R5-2(2.5mm,-36.5mm) on Top Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.611mil|Location2.X=3661.861mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.611mil|Location2.X=3661.861mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad C4-2(3.2mm,-37.75mm) on Top Layer And Pad R5-2(2.5mm,-36.5mm) on Top Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3595.493mil|Location2.X=3606.743mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3595.493mil|Location2.X=3606.743mil|Location1.Y=1664.729mil|Location2.Y=1675.979mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.247mm &lt; 0.254mm) Between Pad R1-1(0.75mm,-36.5mm) on Top Layer And Pad C4-1(1.8mm,-37.75mm) on Top Layer [Top Solder] Mask Sliver [0.247mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3594.317mil|Location2.X=3608.195mil|Location1.Y=1612.728mil|Location2.Y=1623.978mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3594.317mil|Location2.X=3608.195mil|Location1.Y=1612.728mil|Location2.Y=1623.978mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.198mm &lt; 0.254mm) Between Via (1.016mm,-39.192mm) from Top Layer to Bottom Layer And Pad C4-1(1.8mm,-37.75mm) on Top Layer [Top Solder] Mask Sliver [0.198mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3644.375mil|Location2.X=3655.625mil|Location1.Y=1536.647mil|Location2.Y=1547.897mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3644.375mil|Location2.X=3655.625mil|Location1.Y=1536.647mil|Location2.Y=1547.897mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.24mm &lt; 0.254mm) Between Via (2.54mm,-39.472mm) from Top Layer to Bottom Layer And Pad Q2-1(2mm,-40.85mm) on Top Layer [Top Solder] Mask Sliver [0.24mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3614.375mil|Location2.X=3625.625mil|Location1.Y=1575.875mil|Location2.Y=1587.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3614.375mil|Location2.X=3625.625mil|Location1.Y=1575.875mil|Location2.Y=1587.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.076mm &lt; 0.254mm) Between Via (1.016mm,-39.192mm) from Top Layer to Bottom Layer And Via (2.54mm,-39.472mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.076mm] / [Bottom Solder] Mask Sliver [0.076mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHYZBU2C5PV50B20IKT3KJP1ISJCVAB3PLFVYQWPK1MHMK4VH25OD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3772.722mil|Location2.X=3783.972mil|Location1.Y=1634.217mil|Location2.Y=1645.467mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3772.722mil|Location2.X=3783.972mil|Location1.Y=1634.217mil|Location2.Y=1645.467mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Arc (5.8mm,-37.65mm) on Top Overlay And Pad D2-1(6.2mm,-38.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3983.805mil|Location2.X=3991.472mil|Location1.Y=1970.053mil|Location2.Y=1977.719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3983.805mil|Location2.X=3991.472mil|Location1.Y=1970.053mil|Location2.Y=1977.719mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "J2" (10.429mm,-29.905mm) on Top Overlay And Pad P2-6(11.5mm,-29.13mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3795.769mil|Location2.X=3803.435mil|Location1.Y=2477.728mil|Location2.Y=2485.394mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3795.769mil|Location2.X=3803.435mil|Location1.Y=2477.728mil|Location2.Y=2485.394mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C1" (4.51mm,-16.934mm) on Top Overlay And Pad C2-1(6mm,-16mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3770.576mil|Location2.X=3778.242mil|Location1.Y=1588.765mil|Location2.Y=1596.432mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3770.576mil|Location2.X=3778.242mil|Location1.Y=1588.765mil|Location2.Y=1596.432mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q4" (5.675mm,-39.25mm) on Top Overlay And Pad D2-1(6.2mm,-38.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4551.5mil|Location2.X=4562.75mil|Location1.Y=2539.178mil|Location2.Y=2550.428mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4551.5mil|Location2.X=4562.75mil|Location1.Y=2539.178mil|Location2.Y=2550.428mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.102mm &lt; 0.254mm) Between Track (25.732mm,-15.342mm)(25.732mm,-8.586mm) on Top Overlay And Pad Q3-2(22.43mm,-11.964mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.102mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4085.714mil|Location2.X=4096.964mil|Location1.Y=2528.072mil|Location2.Y=2539.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4085.714mil|Location2.X=4096.964mil|Location1.Y=2528.072mil|Location2.Y=2539.322mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.192mm &lt; 0.254mm) Between Track (13.591mm,-15.342mm)(15.293mm,-15.342mm) on Top Overlay And Pad Q3-3(15.25mm,-14.25mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.192mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.548mil|Location2.X=4095.798mil|Location1.Y=2531.855mil|Location2.Y=2543.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.548mil|Location2.X=4095.798mil|Location1.Y=2531.855mil|Location2.Y=2543.105mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.059mm &lt; 0.254mm) Between Track (13.591mm,-15.342mm)(13.591mm,-8.586mm) on Top Overlay And Pad Q3-3(15.25mm,-14.25mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.059mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4145.445mil|Location2.X=4156.695mil|Location1.Y=2528.072mil|Location2.Y=2539.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4145.445mil|Location2.X=4156.695mil|Location1.Y=2528.072mil|Location2.Y=2539.322mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.192mm &lt; 0.254mm) Between Track (15.267mm,-15.342mm)(25.732mm,-15.342mm) on Top Overlay And Pad Q3-3(15.25mm,-14.25mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.192mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.548mil|Location2.X=4095.798mil|Location1.Y=2711.855mil|Location2.Y=2723.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4084.548mil|Location2.X=4095.798mil|Location1.Y=2711.855mil|Location2.Y=2723.105mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.059mm &lt; 0.254mm) Between Track (13.591mm,-15.342mm)(13.591mm,-8.586mm) on Top Overlay And Pad Q3-1(15.25mm,-9.678mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.059mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4085.714mil|Location2.X=4096.964mil|Location1.Y=2778.631mil|Location2.Y=2789.881mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4085.714mil|Location2.X=4096.964mil|Location1.Y=2778.631mil|Location2.Y=2789.881mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.192mm &lt; 0.254mm) Between Track (13.591mm,-8.586mm)(25.732mm,-8.586mm) on Top Overlay And Pad Q3-1(15.25mm,-9.678mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.192mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4471.363mil|Location2.X=4479.03mil|Location1.Y=1901.758mil|Location2.Y=1909.425mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4471.363mil|Location2.X=4479.03mil|Location1.Y=1901.758mil|Location2.Y=1909.425mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (23.545mm,-43.565mm)(23.545mm,-27.815mm) on Top Overlay And Pad D1-1(22.25mm,-30.25mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3683.495mil|Location2.X=3691.162mil|Location1.Y=1963.02mil|Location2.Y=1970.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3683.495mil|Location2.X=3691.162mil|Location1.Y=1963.02mil|Location2.Y=1970.686mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Pad U1-1(2.3mm,-29.345mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.509mil|Location2.X=3692.176mil|Location1.Y=1926.36mil|Location2.Y=1934.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3684.509mil|Location2.X=3692.176mil|Location1.Y=1926.36mil|Location2.Y=1934.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Pad U1-2(2.3mm,-30.615mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3628.099mil|Location2.X=3635.765mil|Location1.Y=1857.165mil|Location2.Y=1864.832mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3628.099mil|Location2.X=3635.765mil|Location1.Y=1857.165mil|Location2.Y=1864.832mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R5" (2.151mm,-33.749mm) on Top Overlay And Pad U1-3(2.3mm,-31.885mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3604.51mil|Location2.X=3615.76mil|Location1.Y=1853.229mil|Location2.Y=1864.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3604.51mil|Location2.X=3615.76mil|Location1.Y=1853.229mil|Location2.Y=1864.479mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.104mm &lt; 0.254mm) Between Text "R1" (-0.25mm,-34mm) on Top Overlay And Pad U1-3(2.3mm,-31.885mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.104mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3625.44mil|Location2.X=3633.106mil|Location1.Y=1812.063mil|Location2.Y=1819.73mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3625.44mil|Location2.X=3633.106mil|Location1.Y=1812.063mil|Location2.Y=1819.73mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R5" (2.151mm,-33.749mm) on Top Overlay And Pad U1-4(2.3mm,-33.155mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3606.492mil|Location2.X=3614.158mil|Location1.Y=1813.02mil|Location2.Y=1820.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3606.492mil|Location2.X=3614.158mil|Location1.Y=1813.02mil|Location2.Y=1820.686mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R1" (-0.25mm,-34mm) on Top Overlay And Pad U1-4(2.3mm,-33.155mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3790.898mil|Location2.X=3798.565mil|Location1.Y=1957.466mil|Location2.Y=1965.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3790.898mil|Location2.X=3798.565mil|Location1.Y=1957.466mil|Location2.Y=1965.132mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Pad U1-8(7.2mm,-29.345mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3800.56mil|Location2.X=3808.226mil|Location1.Y=1963.02mil|Location2.Y=1970.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3800.56mil|Location2.X=3808.226mil|Location1.Y=1963.02mil|Location2.Y=1970.686mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (5.319mm,-30.378mm) on Top Overlay And Pad U1-8(7.2mm,-29.345mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3869.385mil|Location2.X=3877.051mil|Location1.Y=1975.739mil|Location2.Y=1983.406mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3869.385mil|Location2.X=3877.051mil|Location1.Y=1975.739mil|Location2.Y=1983.406mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C3" (7.592mm,-29.184mm) on Top Overlay And Pad U1-8(7.2mm,-29.345mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3825.479mil|Location2.X=3833.146mil|Location1.Y=1963.02mil|Location2.Y=1970.686mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3825.479mil|Location2.X=3833.146mil|Location1.Y=1963.02mil|Location2.Y=1970.686mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R2" (7.027mm,-30.378mm) on Top Overlay And Pad U1-8(7.2mm,-29.345mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.134mil|Location2.X=3789.8mil|Location1.Y=1926.36mil|Location2.Y=1934.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.134mil|Location2.X=3789.8mil|Location1.Y=1926.36mil|Location2.Y=1934.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Pad U1-7(7.2mm,-30.615mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3799.394mil|Location2.X=3807.061mil|Location1.Y=1926.36mil|Location2.Y=1934.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3799.394mil|Location2.X=3807.061mil|Location1.Y=1926.36mil|Location2.Y=1934.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (5.319mm,-30.378mm) on Top Overlay And Pad U1-7(7.2mm,-30.615mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3825.153mil|Location2.X=3832.82mil|Location1.Y=1925.739mil|Location2.Y=1933.406mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3825.153mil|Location2.X=3832.82mil|Location1.Y=1925.739mil|Location2.Y=1933.406mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R2" (7.027mm,-30.378mm) on Top Overlay And Pad U1-7(7.2mm,-30.615mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.389mil|Location2.X=4540.055mil|Location1.Y=2153.726mil|Location2.Y=2161.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.389mil|Location2.X=4540.055mil|Location1.Y=2153.726mil|Location2.Y=2161.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (25.05mm,-28mm)(25.05mm,-16mm) on Top Overlay And Pad L1-2(24mm,-22mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4059.947mil|Location2.X=4067.613mil|Location1.Y=2153.726mil|Location2.Y=2161.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4059.947mil|Location2.X=4067.613mil|Location1.Y=2153.726mil|Location2.Y=2161.392mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (13.05mm,-28mm)(13.05mm,-16mm) on Top Overlay And Pad L1-1(14.1mm,-22mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4063.432mil|Location2.X=4071.098mil|Location1.Y=2185.078mil|Location2.Y=2192.744mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4063.432mil|Location2.X=4071.098mil|Location1.Y=2185.078mil|Location2.Y=2192.744mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (12.045mm,-25.29mm) on Top Overlay And Pad L1-1(14.1mm,-22mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3858.311mil|Location2.X=3869.561mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3858.311mil|Location2.X=3869.561mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (7.974mm,-35.95mm)(7.974mm,-35.55mm) on Top Overlay And Pad R2-2(7.624mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.753mil|Location2.X=3842.003mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.753mil|Location2.X=3842.003mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (7.274mm,-35.95mm)(7.274mm,-35.55mm) on Top Overlay And Pad R2-2(7.624mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3845.155mil|Location2.X=3852.822mil|Location1.Y=1738.505mil|Location2.Y=1746.172mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3845.155mil|Location2.X=3852.822mil|Location1.Y=1738.505mil|Location2.Y=1746.172mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Pad R2-2(7.624mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3858.311mil|Location2.X=3869.561mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3858.311mil|Location2.X=3869.561mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (7.974mm,-35.95mm)(7.974mm,-35.55mm) on Top Overlay And Pad R2-1(7.624mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.753mil|Location2.X=3842.003mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3830.753mil|Location2.X=3842.003mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (7.274mm,-35.95mm)(7.274mm,-35.55mm) on Top Overlay And Pad R2-1(7.624mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3833.675mil|Location2.X=3841.341mil|Location1.Y=1679.282mil|Location2.Y=1686.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3833.675mil|Location2.X=3841.341mil|Location1.Y=1679.282mil|Location2.Y=1686.949mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Pad R2-1(7.624mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3763.509mil|Location2.X=3774.759mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3763.509mil|Location2.X=3774.759mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (5.566mm,-35.95mm)(5.566mm,-35.55mm) on Top Overlay And Pad R3-2(5.916mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.067mil|Location2.X=3802.317mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.067mil|Location2.X=3802.317mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (6.266mm,-35.95mm)(6.266mm,-35.55mm) on Top Overlay And Pad R3-2(5.916mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.282mil|Location2.X=3775.949mil|Location1.Y=1739.263mil|Location2.Y=1746.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.282mil|Location2.X=3775.949mil|Location1.Y=1739.263mil|Location2.Y=1746.929mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Pad R3-2(5.916mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3763.509mil|Location2.X=3774.759mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3763.509mil|Location2.X=3774.759mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (5.566mm,-35.95mm)(5.566mm,-35.55mm) on Top Overlay And Pad R3-1(5.916mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.067mil|Location2.X=3802.317mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.067mil|Location2.X=3802.317mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (6.266mm,-35.95mm)(6.266mm,-35.55mm) on Top Overlay And Pad R3-1(5.916mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.282mil|Location2.X=3775.949mil|Location1.Y=1690.106mil|Location2.Y=1697.773mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.282mil|Location2.X=3775.949mil|Location1.Y=1690.106mil|Location2.Y=1697.773mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Pad R3-1(5.916mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3696.265mil|Location2.X=3707.515mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3696.265mil|Location2.X=3707.515mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (3.858mm,-35.95mm)(3.858mm,-35.55mm) on Top Overlay And Pad R4-2(4.208mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3723.823mil|Location2.X=3735.073mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3723.823mil|Location2.X=3735.073mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (4.558mm,-35.95mm)(4.558mm,-35.55mm) on Top Overlay And Pad R4-2(4.208mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3689.999mil|Location2.X=3701.249mil|Location1.Y=1729.234mil|Location2.Y=1742.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3689.999mil|Location2.X=3701.249mil|Location1.Y=1729.234mil|Location2.Y=1742.929mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.128mm &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Pad R4-2(4.208mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.128mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3696.265mil|Location2.X=3707.515mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3696.265mil|Location2.X=3707.515mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (3.858mm,-35.95mm)(3.858mm,-35.55mm) on Top Overlay And Pad R4-1(4.208mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3723.823mil|Location2.X=3735.073mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3723.823mil|Location2.X=3735.073mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (4.558mm,-35.95mm)(4.558mm,-35.55mm) on Top Overlay And Pad R4-1(4.208mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3656.579mil|Location2.X=3667.829mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3656.579mil|Location2.X=3667.829mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (2.85mm,-35.95mm)(2.85mm,-35.55mm) on Top Overlay And Pad R5-2(2.5mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3629.021mil|Location2.X=3640.271mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3629.021mil|Location2.X=3640.271mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (2.15mm,-35.95mm)(2.15mm,-35.55mm) on Top Overlay And Pad R5-2(2.5mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3626.876mil|Location2.X=3634.543mil|Location1.Y=1702.938mil|Location2.Y=1710.605mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3626.876mil|Location2.X=3634.543mil|Location1.Y=1702.938mil|Location2.Y=1710.605mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Pad R5-2(2.5mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3656.579mil|Location2.X=3667.829mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3656.579mil|Location2.X=3667.829mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (2.85mm,-35.95mm)(2.85mm,-35.55mm) on Top Overlay And Pad R5-1(2.5mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3629.021mil|Location2.X=3640.271mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3629.021mil|Location2.X=3640.271mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (2.15mm,-35.95mm)(2.15mm,-35.55mm) on Top Overlay And Pad R5-1(2.5mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3629.351mil|Location2.X=3637.017mil|Location1.Y=1752.812mil|Location2.Y=1760.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3629.351mil|Location2.X=3637.017mil|Location1.Y=1752.812mil|Location2.Y=1760.479mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Pad R5-1(2.5mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3624.907mil|Location2.X=3632.573mil|Location1.Y=2179.317mil|Location2.Y=2186.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3624.907mil|Location2.X=3632.573mil|Location1.Y=2179.317mil|Location2.Y=2186.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (2mm,-27.75mm)(2mm,-19.25mm) on Top Overlay And Pad C1-1(3.15mm,-23.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3959.553mil|Location2.X=3967.219mil|Location1.Y=2179.317mil|Location2.Y=2186.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3959.553mil|Location2.X=3967.219mil|Location1.Y=2179.317mil|Location2.Y=2186.984mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Track (10.5mm,-27.75mm)(10.5mm,-19.25mm) on Top Overlay And Pad C1-2(9.35mm,-23.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3667.353mil|Location2.X=3675.02mil|Location1.Y=1628.906mil|Location2.Y=1636.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3667.353mil|Location2.X=3675.02mil|Location1.Y=1628.906mil|Location2.Y=1636.573mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q2" (1.925mm,-39.3mm) on Top Overlay And Pad C4-2(3.2mm,-37.75mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.542mil|Location2.X=3624.209mil|Location1.Y=1628.906mil|Location2.Y=1636.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.542mil|Location2.X=3624.209mil|Location1.Y=1628.906mil|Location2.Y=1636.573mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q2" (1.925mm,-39.3mm) on Top Overlay And Pad C4-1(1.8mm,-37.75mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3560.123mil|Location2.X=3571.373mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3560.123mil|Location2.X=3571.373mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (0.4mm,-35.95mm)(0.4mm,-35.55mm) on Top Overlay And Pad R1-2(0.75mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.683mil|Location2.X=3598.933mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.683mil|Location2.X=3598.933mil|Location1.Y=1730.675mil|Location2.Y=1741.925mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (1.1mm,-35.95mm)(1.1mm,-35.55mm) on Top Overlay And Pad R1-2(0.75mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3583.877mil|Location2.X=3591.544mil|Location1.Y=1734.435mil|Location2.Y=1742.102mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3583.877mil|Location2.X=3591.544mil|Location1.Y=1734.435mil|Location2.Y=1742.102mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Pad R1-2(0.75mm,-35mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3560.123mil|Location2.X=3571.373mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3560.123mil|Location2.X=3571.373mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (0.4mm,-35.95mm)(0.4mm,-35.55mm) on Top Overlay And Pad R1-1(0.75mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.683mil|Location2.X=3598.933mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3587.683mil|Location2.X=3598.933mil|Location1.Y=1703.115mil|Location2.Y=1714.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Track (1.1mm,-35.95mm)(1.1mm,-35.55mm) on Top Overlay And Pad R1-1(0.75mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591.707mil|Location2.X=3599.373mil|Location1.Y=1695.174mil|Location2.Y=1702.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3591.707mil|Location2.X=3599.373mil|Location1.Y=1695.174mil|Location2.Y=1702.841mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Pad R1-1(0.75mm,-36.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDFMNZW3QV0HNFEJETAIVGEUVH4C4HLSBYKTCMS1B5XQXPGLVTJCHF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3777.897mil|Location2.X=3785.564mil|Location1.Y=1641.875mil|Location2.Y=1649.542mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3777.897mil|Location2.X=3785.564mil|Location1.Y=1641.875mil|Location2.Y=1649.542mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q4" (5.675mm,-39.25mm) on Top Overlay And Arc (5.8mm,-37.65mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3701.679mil|Location2.X=3709.345mil|Location1.Y=1857.462mil|Location2.Y=1865.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3701.679mil|Location2.X=3709.345mil|Location1.Y=1857.462mil|Location2.Y=1865.129mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R5" (2.151mm,-33.749mm) on Top Overlay And Track (3.95mm,-33.75mm)(3.95mm,-28.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3701.679mil|Location2.X=3709.345mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3701.679mil|Location2.X=3709.345mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Track (3.95mm,-33.75mm)(3.95mm,-28.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3764.671mil|Location2.X=3772.337mil|Location1.Y=1976.531mil|Location2.Y=1984.197mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3764.671mil|Location2.X=3772.337mil|Location1.Y=1976.531mil|Location2.Y=1984.197mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Track (5.55mm,-33.75mm)(5.55mm,-28.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3764.671mil|Location2.X=3772.337mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3764.671mil|Location2.X=3772.337mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (5.319mm,-30.378mm) on Top Overlay And Track (5.55mm,-33.75mm)(5.55mm,-28.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3701.679mil|Location2.X=3709.345mil|Location1.Y=1992.753mil|Location2.Y=2000.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3701.679mil|Location2.X=3709.345mil|Location1.Y=1992.753mil|Location2.Y=2000.42mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Track (3.95mm,-28.75mm)(5.55mm,-28.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3755.58mil|Location2.X=3763.247mil|Location1.Y=1992.753mil|Location2.Y=2000.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3755.58mil|Location2.X=3763.247mil|Location1.Y=1992.753mil|Location2.Y=2000.42mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (5.319mm,-30.378mm) on Top Overlay And Track (3.95mm,-28.75mm)(5.55mm,-28.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3720.823mil|Location2.X=3728.489mil|Location1.Y=1797.986mil|Location2.Y=1805.652mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3720.823mil|Location2.X=3728.489mil|Location1.Y=1797.986mil|Location2.Y=1805.652mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R5" (2.151mm,-33.749mm) on Top Overlay And Track (3.95mm,-33.75mm)(5.55mm,-33.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4048.923mil|Location2.X=4056.589mil|Location1.Y=1948.808mil|Location2.Y=1956.475mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4048.923mil|Location2.X=4056.589mil|Location1.Y=1948.808mil|Location2.Y=1956.475mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "J2" (10.429mm,-29.905mm) on Top Overlay And Track (12.77mm,-43.1mm)(12.77mm,-27.86mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3952.302mil|Location2.X=3959.969mil|Location1.Y=1958.805mil|Location2.Y=1966.472mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3952.302mil|Location2.X=3959.969mil|Location1.Y=1958.805mil|Location2.Y=1966.472mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "J2" (10.429mm,-29.905mm) on Top Overlay And Track (10.23mm,-43.1mm)(10.23mm,-27.86mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3947.511mil|Location2.X=3955.177mil|Location1.Y=2027.17mil|Location2.Y=2034.837mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3947.511mil|Location2.X=3955.177mil|Location1.Y=2027.17mil|Location2.Y=2034.837mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C3" (7.592mm,-29.184mm) on Top Overlay And Track (10.23mm,-43.1mm)(10.23mm,-27.86mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3947.445mil|Location2.X=3955.111mil|Location1.Y=2028.5mil|Location2.Y=2036.167mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3947.445mil|Location2.X=3955.111mil|Location1.Y=2028.5mil|Location2.Y=2036.167mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C3" (7.592mm,-29.184mm) on Top Overlay And Track (10.23mm,-27.86mm)(12.77mm,-27.86mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.723mil|Location2.X=4540.389mil|Location1.Y=2120.532mil|Location2.Y=2128.199mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4532.723mil|Location2.X=4540.389mil|Location1.Y=2120.532mil|Location2.Y=2128.199mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "J3" (23.543mm,-26.813mm) on Top Overlay And Track (25.05mm,-28mm)(25.05mm,-16mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4060.155mil|Location2.X=4067.821mil|Location1.Y=2140.506mil|Location2.Y=2148.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4060.155mil|Location2.X=4067.821mil|Location1.Y=2140.506mil|Location2.Y=2148.173mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (12.045mm,-25.29mm) on Top Overlay And Track (13.05mm,-28mm)(13.05mm,-16mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4057.668mil|Location2.X=4065.335mil|Location1.Y=2062.816mil|Location2.Y=2070.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4057.668mil|Location2.X=4065.335mil|Location1.Y=2062.816mil|Location2.Y=2070.483mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "P2" (10.395mm,-27.009mm) on Top Overlay And Track (13.05mm,-28mm)(13.05mm,-16mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3860.103mil|Location2.X=3867.769mil|Location1.Y=1711.122mil|Location2.Y=1718.789mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3860.103mil|Location2.X=3867.769mil|Location1.Y=1711.122mil|Location2.Y=1718.789mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Track (7.974mm,-35.95mm)(7.974mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3833.037mil|Location2.X=3840.703mil|Location1.Y=1730.093mil|Location2.Y=1737.76mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3833.037mil|Location2.X=3840.703mil|Location1.Y=1730.093mil|Location2.Y=1737.76mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Track (7.274mm,-35.95mm)(7.274mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.067mil|Location2.X=3802.317mil|Location1.Y=1733.295mil|Location2.Y=1744.545mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3791.067mil|Location2.X=3802.317mil|Location1.Y=1733.295mil|Location2.Y=1744.545mil|Absolute=True">Silk To Silk Clearance Constraint: (0.233mm &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Track (6.266mm,-35.95mm)(6.266mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0.233mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.966mil|Location2.X=3776.633mil|Location1.Y=1710.813mil|Location2.Y=1718.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3768.966mil|Location2.X=3776.633mil|Location1.Y=1710.813mil|Location2.Y=1718.479mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (5.779mm,-36.613mm) on Top Overlay And Track (5.566mm,-35.95mm)(5.566mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3690.511mil|Location2.X=3701.761mil|Location1.Y=1725.883mil|Location2.Y=1737.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3690.511mil|Location2.X=3701.761mil|Location1.Y=1725.883mil|Location2.Y=1737.133mil|Absolute=True">Silk To Silk Clearance Constraint: (0.098mm &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Track (3.858mm,-35.95mm)(3.858mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0.098mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3628.671mil|Location2.X=3636.338mil|Location1.Y=1710.078mil|Location2.Y=1717.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3628.671mil|Location2.X=3636.338mil|Location1.Y=1710.078mil|Location2.Y=1717.745mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Track (2.15mm,-35.95mm)(2.15mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3658.371mil|Location2.X=3666.037mil|Location1.Y=1728.308mil|Location2.Y=1735.974mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3658.371mil|Location2.X=3666.037mil|Location1.Y=1728.308mil|Location2.Y=1735.974mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Track (2.85mm,-35.95mm)(2.85mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3634.863mil|Location2.X=3646.113mil|Location1.Y=2038.207mil|Location2.Y=2049.457mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3634.863mil|Location2.X=3646.113mil|Location1.Y=2038.207mil|Location2.Y=2049.457mil|Absolute=True">Silk To Silk Clearance Constraint: (0.069mm &lt; 0.254mm) Between Text "U1" (0.775mm,-27.427mm) on Top Overlay And Track (2mm,-27.75mm)(10.5mm,-27.75mm) on Top Overlay Silk Text to Silk Clearance [0.069mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3878.579mil|Location2.X=3886.245mil|Location1.Y=2033.647mil|Location2.Y=2041.313mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3878.579mil|Location2.X=3886.245mil|Location1.Y=2033.647mil|Location2.Y=2041.313mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C3" (7.592mm,-29.184mm) on Top Overlay And Track (2mm,-27.75mm)(10.5mm,-27.75mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3957.488mil|Location2.X=3965.154mil|Location1.Y=2062.816mil|Location2.Y=2070.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3957.488mil|Location2.X=3965.154mil|Location1.Y=2062.816mil|Location2.Y=2070.483mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "P2" (10.395mm,-27.009mm) on Top Overlay And Track (10.5mm,-27.75mm)(10.5mm,-19.25mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3950.503mil|Location2.X=3961.753mil|Location1.Y=2026.312mil|Location2.Y=2039.867mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3950.503mil|Location2.X=3961.753mil|Location1.Y=2026.312mil|Location2.Y=2039.867mil|Absolute=True">Silk To Silk Clearance Constraint: (0.15mm &lt; 0.254mm) Between Text "C3" (7.592mm,-29.184mm) on Top Overlay And Track (10.5mm,-27.75mm)(10.5mm,-19.25mm) on Top Overlay Silk Text to Silk Clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3620.784mil|Location2.X=3628.451mil|Location1.Y=2056.349mil|Location2.Y=2064.015mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3620.784mil|Location2.X=3628.451mil|Location1.Y=2056.349mil|Location2.Y=2064.015mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U1" (0.775mm,-27.427mm) on Top Overlay And Track (2mm,-27.75mm)(2mm,-19.25mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.543mil|Location2.X=3658.21mil|Location1.Y=2098.607mil|Location2.Y=2106.273mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3650.543mil|Location2.X=3658.21mil|Location1.Y=2098.607mil|Location2.Y=2106.273mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U1" (0.775mm,-27.427mm) on Top Overlay And Track (2.75mm,-26.1mm)(3.65mm,-26.1mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3588.037mil|Location2.X=3595.704mil|Location1.Y=1710.813mil|Location2.Y=1718.479mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3588.037mil|Location2.X=3595.704mil|Location1.Y=1710.813mil|Location2.Y=1718.479mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C4" (1mm,-36.25mm) on Top Overlay And Track (1.1mm,-35.95mm)(1.1mm,-35.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3845.068mil|Location2.X=3852.735mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3845.068mil|Location2.X=3852.735mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (5.319mm,-30.378mm) on Top Overlay And Text "C3" (7.592mm,-29.184mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3845.068mil|Location2.X=3852.735mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3845.068mil|Location2.X=3852.735mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R2" (7.027mm,-30.378mm) on Top Overlay And Text "C3" (7.592mm,-29.184mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4030.372mil|Location2.X=4038.039mil|Location1.Y=2126.653mil|Location2.Y=2134.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4030.372mil|Location2.X=4038.039mil|Location1.Y=2126.653mil|Location2.Y=2134.32mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "Q1" (12.045mm,-25.29mm) on Top Overlay And Text "P2" (10.395mm,-27.009mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3621.783mil|Location2.X=3633.033mil|Location1.Y=1789.568mil|Location2.Y=1801.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3621.783mil|Location2.X=3633.033mil|Location1.Y=1789.568mil|Location2.Y=1801.991mil|Absolute=True">Silk To Silk Clearance Constraint: (0.193mm &lt; 0.254mm) Between Text "R5" (2.151mm,-33.749mm) on Top Overlay And Text "R1" (-0.25mm,-34mm) on Top Overlay Silk Text to Silk Clearance [0.193mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.824mil|Location2.X=3830.491mil|Location1.Y=1987.434mil|Location2.Y=1995.1mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3822.824mil|Location2.X=3830.491mil|Location1.Y=1987.434mil|Location2.Y=1995.1mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R3" (5.319mm,-30.378mm) on Top Overlay And Text "R2" (7.027mm,-30.378mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3778.307mil|Location2.X=3785.973mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3778.307mil|Location2.X=3785.973mil|Location1.Y=1990.167mil|Location2.Y=1997.834mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R4" (3.611mm,-30.378mm) on Top Overlay And Text "R3" (5.319mm,-30.378mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCADDY4KN0RPKEWW2B2X4WOK0MBUPC1JOEPZXJVBS1VZKXW20QL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3570.67mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3570.67mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SOIC Component U1-MC34063EBD-TR (4.75mm,-31.25mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3374.803mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=3096.929mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3374.803mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=3096.929mil|Absolute=True">Room Definition: Between Small Component P1-Header 2H (2mm,-2.21mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4044.031mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2505.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4044.031mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2505.078mil|Absolute=True">Room Definition: Between SMT Small Component L1-CD127-inductor (19.05mm,-22mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4454.726mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=3107.756mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4454.726mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=3107.756mil|Absolute=True">Room Definition: Between Small Component J1-SLW-102-01-F-S (24.5mm,-4.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4214.37mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4214.37mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component D1-RS1M (20.25mm,-30.25mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3608.992mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2377.126mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3608.992mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2377.126mil|Absolute=True">Room Definition: Between SMT Small Component C1-Cap (6.25mm,-23.5mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3574.606mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2810.118mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3574.606mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2810.118mil|Absolute=True">Room Definition: Between Small Component C2-Cap (6mm,-13.5mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3893.78mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3893.78mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component C3-Cap (9.332mm,-35.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3599.213mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3599.213mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component C4-Cap (2.5mm,-37.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3767.52mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3767.52mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component D2-Diode 1N4148 (7.75mm,-38.5mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4123.74mil|Location2.X=6013.767mil|Location1.Y=1412.402mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4123.74mil|Location2.X=6013.767mil|Location1.Y=1412.402mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between Component J2-DC003a (15.75mm,-41.5mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4467.126mil|Location2.X=6013.767mil|Location1.Y=1405mil|Location2.Y=2044.764mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4467.126mil|Location2.X=6013.767mil|Location1.Y=1405mil|Location2.Y=2044.764mil|Absolute=True">Room Definition: Between SIP Component J3-SSW-106-02-G-S (24.75mm,-42.04mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3948.819mil|Location2.X=6013.767mil|Location1.Y=1429.213mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3948.819mil|Location2.X=6013.767mil|Location1.Y=1429.213mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SIP Component P2-Header 6 (11.5mm,-41.83mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4049.999mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4049.999mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component Q1-AO3407 (14.75mm,-31.5mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.544mil|Location2.X=6013.767mil|Location1.Y=1403.621mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3578.544mil|Location2.X=6013.767mil|Location1.Y=1403.621mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component Q2-npn (3.175mm,-41.8mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4081.133mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2795.913mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4081.133mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2795.913mil|Absolute=True">Room Definition: Between SMT Small Component Q3-FQD5N60C (22.43mm,-11.964mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3758.662mil|Location2.X=6013.767mil|Location1.Y=1395.747mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3758.662mil|Location2.X=6013.767mil|Location1.Y=1395.747mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component Q4-SS850 (7.75mm,-42mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3555.905mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3555.905mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component R1-Res1 (0.75mm,-35.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3826.535mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3826.535mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component R2-Res1 (7.624mm,-35.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3759.291mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3759.291mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component R3-Res1 (5.916mm,-35.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3692.048mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3692.048mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component R4-Res1 (4.208mm,-35.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3624.803mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\Altium\nixie-tube-power.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3624.803mil|Location2.X=6013.767mil|Location1.Y=1456.69mil|Location2.Y=2037.398mil|Absolute=True">Room Definition: Between SMT Small Component R5-Res1 (2.5mm,-35.75mm) on Top Layer And Room nixie-tube-power (Bounding Region = (118.25mm, 37mm, 152.75mm, 51.75mm) (InComponentClass('nixie-tube-power')) </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

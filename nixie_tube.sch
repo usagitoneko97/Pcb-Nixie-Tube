@@ -578,24 +578,24 @@ $EndComp
 $Comp
 L Conn_01x06_Male J1
 U 1 1 59F6FE01
-P 2000 4800
-F 0 "J1" H 2000 5100 50  0000 C CNN
-F 1 "Conn_01x06_Male" H 2000 4400 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Angled_1x06_Pitch2.54mm" H 2000 4800 50  0001 C CNN
-F 3 "" H 2000 4800 50  0001 C CNN
-	1    2000 4800
-	1    0    0    -1  
+P 2000 4900
+F 0 "J1" H 2000 5200 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 2000 4500 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Angled_1x06_Pitch2.54mm" H 2000 4900 50  0001 C CNN
+F 3 "" H 2000 4900 50  0001 C CNN
+	1    2000 4900
+	1    0    0    1   
 $EndComp
 $Comp
 L Conn_01x06_Female J2
 U 1 1 59F70E4E
-P 3275 4800
-F 0 "J2" H 3275 5100 50  0000 C CNN
-F 1 "Conn_01x06_Female" H 3275 4400 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Angled_1x06_Pitch2.54mm" H 3275 4800 50  0001 C CNN
-F 3 "" H 3275 4800 50  0001 C CNN
-	1    3275 4800
-	1    0    0    -1  
+P 3275 4900
+F 0 "J2" H 3275 5200 50  0000 C CNN
+F 1 "Conn_01x06_Female" H 3275 4500 50  0000 C CNN
+F 2 "Socket_Strips:Socket_Strip_Angled_1x06_Pitch2.54mm" H 3275 4900 50  0001 C CNN
+F 3 "" H 3275 4900 50  0001 C CNN
+	1    3275 4900
+	1    0    0    1   
 $EndComp
 Wire Wire Line
 	2200 4600 3075 4600
