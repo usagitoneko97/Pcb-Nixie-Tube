@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source C:\Users\user8\Documents\Pcb-project\Pcb-Nixie-Tube\nixie_tube.sch)
-    (date "11/15/2017 6:34:46 PM")
+    (date "11/15/2017 6:42:30 PM")
     (tool "Eeschema 4.0.7")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -159,7 +159,7 @@
       (tstamp 5A0BB87E))
     (comp (ref Q4)
       (value TP0610T)
-      (footprint TO_SOT_Packages_SMD:SOT-23)
+      (footprint nixie-tube-fp:SOT-23-alt_solder_on2_3)
       (libsource (lib transistors) (part TP0610T))
       (sheetpath (names /) (tstamps /))
       (tstamp 5A0C79BF)))
