@@ -338,7 +338,7 @@ GND
 Text Label 2200 5000 0    60   ~ 0
 SCK
 Text Label 2200 5100 0    60   ~ 0
-MOSi
+MOSI
 $Comp
 L GND #PWR011
 U 1 1 59E5EFC2

@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source C:/Students/usagitoneko/PCB/Pcb-Nixie-Tube/nixie_tube.sch)
-    (date "11/16/2017 8:35:08 PM")
+    (date "11/22/2017 5:43:19 PM")
     (tool "Eeschema 4.0.7")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -356,10 +356,10 @@
   (libraries
     (library (logical nixie_tube-rescue)
       (uri C:\Students\usagitoneko\PCB\Pcb-Nixie-Tube\nixie_tube-rescue.lib))
-    (library (logical transistors)
-      (uri "C:\\Program Files\\KiCad\\share\\kicad\\library\\transistors.lib"))
     (library (logical device)
       (uri "C:\\Program Files\\KiCad\\share\\kicad\\library\\device.lib"))
+    (library (logical transistors)
+      (uri "C:\\Program Files\\KiCad\\share\\kicad\\library\\transistors.lib"))
     (library (logical conn)
       (uri "C:\\Program Files\\KiCad\\share\\kicad\\library\\conn.lib"))
     (library (logical dc-jack)
@@ -425,7 +425,7 @@
     (net (code 12) (name /SCK)
       (node (ref J2) (pin 5))
       (node (ref J1) (pin 5)))
-    (net (code 13) (name /MOSi)
+    (net (code 13) (name /MOSI)
       (node (ref J1) (pin 6))
       (node (ref J2) (pin 6)))
     (net (code 14) (name +VDC)
